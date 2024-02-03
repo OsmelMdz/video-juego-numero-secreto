@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Inter:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Número Secreto</title>
+    <link rel="shortcut icon" href="img/game.png" type="image/x-icon">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="container__contenido">
+            <div class="container__informaciones">
+                <div class="container__texto">
+                    <h1></h1>
+                    <p class="texto__parrafo"></p>
+                    <h2 id="intentos"></h2>
+                </div>
+                <input type="number" id="valorUsuario" min="1" max="10" class="container__input"
+                    oninput="validarInput()">
+                <div class="chute container__botones">
+                    <button onclick="verificarIntento();" class="container__boton" id="inicio">Intentar</button>
+                    <button onclick="reiniciarJuego();" class="container__boton" id="reiniciar" disabled>Nuevo
+                        juego</button>
+                </div>
+                <div>
+                    <button onclick="reiniciar()" class="container__boton" id="nuevo" disabled>Reiniciar juego</button>
+                </div>
+            </div>
+            <img src="./img/dexter.png" id="dexter" alt="Una persona mirando a la izquierda"
+                class="container__imagen-persona" />
+        </div>
+    </div>
+
+    <footer><a line="off" href="https://github.com/OsmelMdz">&copy; Osmel Mendez 2024</a></footer>
+
+    <script src="app.js"></script>
+
+</body>
+
+
+</html>
