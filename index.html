@@ -8,9 +8,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700&family=Inter:wght@400;700&display=swap"
         rel="stylesheet">
+    <title>Dextro</title>
     <link rel="stylesheet" href="style.css">
-    <title>Número Secreto</title>
     <link rel="shortcut icon" href="img/game.png" type="image/x-icon">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 </head>
 
 <body>
@@ -40,6 +42,19 @@
     </div>
 
     <footer><a line="off" href="https://github.com/OsmelMdz">&copy; Osmel Mendez 2024</a></footer>
+    <!-- Botón flotante -->
+    <div class="audio-btn" id="audioButton">
+        <i class="icon-audio">🔊</i>
+    </div>
+    <!-- Elemento de audio -->
+    <audio id="audioPlayer">
+        <source src="./sound/dexter.mp3" type="audio/mp3">
+        Tu navegador no soporta la reproducción de audio.
+    </audio>
+    </div>
+    </div>
+
+    <footer><a line="off" href="https://osmel-dev.vercel.app/">&copy; Osmel Mendez 2024</a></footer>
 
     <script src="app.js"></script>
 

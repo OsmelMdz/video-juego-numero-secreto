@@ -4,6 +4,48 @@ let listaNumerosSorteados = [];
 let numeroMaximo = 10;
 let numeroIntentosMaximo = 5;
 
+// Referencias a los elementos
+const audioButton = document.getElementById('audioButton');
+const audioPlayer = document.getElementById('audioPlayer');
+
+// Estado de reproducción
+let isPlaying = false;
+let isMuted = false;
+
+
+// Función para reproducir/pausar audio
+audioButton.addEventListener('click', () => {
+    if (!isPlaying) {
+        audioPlayer.play();
+        isPlaying = true;
+        audioButton.innerHTML = '<i class="icon-audio">🔇</i>'; // Cambia icono a mute
+    } else {
+        audioPlayer.pause();
+        isPlaying = false;
+        audioButton.innerHTML = '<i class="icon-audio">🔊</i>'; // Cambia icono a play
+    }
+});
+
+// Función para silenciar el audio
+audioButton.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
+    if (!isMuted) {
+        audioPlayer.muted = true;
+        isMuted = true;
+        audioButton.innerHTML = '<i class="icon-audio">🔈</i>'; // Cambia icono a sin sonido
+    } else {
+        audioPlayer.muted = false;
+        isMuted = false;
+        audioButton.innerHTML = '<i class="icon-audio">🔊</i>'; // Cambia icono a sonido
+    }
+});
+
+// Reproducir el audio nuevamente cuando termine
+audioPlayer.addEventListener('ended', () => {
+    audioPlayer.currentTime = 0; // Reinicia el tiempo
+    audioPlayer.play(); // Reproduce de nuevo
+});
+
 function asignarTextoElemento(elemento, texto, color) {
     let elementoHTML = document.querySelector(elemento);
     elementoHTML.innerHTML = texto;
@@ -40,7 +82,6 @@ function verificarIntento() {
             asignarTextoElemento('p', 'El número secreto es menor', 'red');
             // Cambiar imagen
             document.querySelector('#dexter').setAttribute('src', './img/dexterpensativo.png');
-            // modificar el h2 de acuerdo a los intentos que lleve
         } else {
             asignarTextoElemento('p', 'El número secreto es mayor', 'red');
             // Cambiar imagen
@@ -76,57 +117,74 @@ function generarNumeroSecreto() {
             document.querySelector('#dexter').setAttribute('src', './img/dextertriste.png');
         }, 12.5); // 60000 milisegundos = 1 minuto
     } else {
-        //Si el numero generado está incluido en la lista 
-        if (listaNumerosSorteados.includes(numeroGenerado)) {
-            return generarNumeroSecreto();
+        //Si el numero generado está incluido en la lista
+        // Si ya sorteamos todos los números
+        if (listaNumerosSorteados.length == numeroMaximo) {
+            document.querySelector('#inicio').style.display = 'none';
+            asignarTextoElemento('p', 'Ya se sortearon todos los números posibles', 'red');
+            asignarTextoElemento('h2', ``);
+            document.getElementById('nuevo').removeAttribute('disabled');
+            // Cambiar la imagen a dexter triste
+            document.querySelector('#dexter').setAttribute('src', './img/dextertriste.png');
         } else {
-            listaNumerosSorteados.push(numeroGenerado);
-            return numeroGenerado;
+            // Si el número generado está incluido en la lista
+            if (listaNumerosSorteados.includes(numeroGenerado)) {
+                return generarNumeroSecreto();
+            } else {
+                listaNumerosSorteados.push(numeroGenerado);
+                return numeroGenerado;
+            }
         }
     }
-}
 
-function condicionesIniciales() {
-    asignarTextoElemento('h1', 'Juego del número secreto!');
-    asignarTextoElemento('h2', `Ingresa un número del 1 al ${numeroMaximo}`, 'white');
-    asignarTextoElemento('p', `Tienes ${numeroIntentosMaximo} intentos para adivinar el número secreto`, 'yellow');
-    numeroSecreto = generarNumeroSecreto();
-    intentos = 1;
-    console.log(numeroSecreto);
-}
+    function condicionesIniciales() {
+        asignarTextoElemento('h1', 'Juego del número secreto!');
+        asignarTextoElemento('h2', `Ingresa un número del 1 al ${numeroMaximo}`, 'white');
+        asignarTextoElemento('p', `Tienes ${numeroIntentosMaximo} intentos para adivinar el número secreto`, 'yellow');
+        numeroSecreto = generarNumeroSecreto();
+        intentos = 1;
+        console.log(numeroSecreto);
+    }
 
-function reiniciarJuego() {
-    //limpiar caja
-    limpiarCaja();
-    //Indicar mensaje de intervalo de números 
-    //Generar el número aleatorio
-    //Inicializar el número intentos
+    function reiniciarJuego() {
+        //limpiar caja
+        limpiarCaja();
+        //Indicar mensaje de intervalo de números
+        //Generar el número aleatorio
+        //Inicializar el número intentos
+        condicionesIniciales();
+        //Deshabilitar el botón de nuevo juego
+        document.querySelector('#reiniciar').setAttribute('disabled', 'true');
+        document.getElementById('inicio').removeAttribute('disabled');
+        // reiniciar la imagen a la que tenia antes de iniciar el juego
+        document.querySelector('#dexter').setAttribute('src', './img/dexter.png');
+    }
+
+    function reiniciar() {
+        location.reload();
+    }
+
     condicionesIniciales();
-    //Deshabilitar el botón de nuevo juego
-    document.querySelector('#reiniciar').setAttribute('disabled', 'true');
-    document.getElementById('inicio').removeAttribute('disabled');
-    // reiniciar la imagen a la que tenia antes de iniciar el juego
-    document.querySelector('#dexter').setAttribute('src', './img/dexter.png');
-}
 
-function reiniciar() {
-    //recargar la pagina 
-    location.reload();
-}
-
-condicionesIniciales();
-
-function validarInput() {
-    // Obtener el valor del input
+    function validarInput() {
+        // Obtener el valor del input
+        var valorInput = document.getElementById("valorUsuario").value;
+        // Eliminar cualquier carácter no numérico
+        var valorNumerico = parseInt(valorInput);
+        // Verificar si el valor es un número y está dentro del rango permitido
+        if (isNaN(valorNumerico) || valorNumerico < 1 || valorNumerico > 10) {
+            // Si no es un número o está fuera del rango, establecer el valor a la última entrada válida
+            document.getElementById("valorUsuario").value = "";
+        } else {
+            // Si es un número válido, actualizar el valor del input
+            document.getElementById("valorUsuario").value = valorNumerico;
+        }
+    }
     var valorInput = document.getElementById("valorUsuario").value;
-    // Eliminar cualquier carácter no numérico
     var valorNumerico = parseInt(valorInput);
-    // Verificar si el valor es un número y está dentro del rango permitido
     if (isNaN(valorNumerico) || valorNumerico < 1 || valorNumerico > 10) {
-        // Si no es un número o está fuera del rango, establecer el valor a la última entrada válida
         document.getElementById("valorUsuario").value = "";
     } else {
-        // Si es un número válido, actualizar el valor del input
         document.getElementById("valorUsuario").value = valorNumerico;
     }
 }

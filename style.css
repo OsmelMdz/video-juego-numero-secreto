@@ -133,6 +133,33 @@ a {
     text-decoration: none;
 }
 
+.audio-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #e4fd01;
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    /* Para que esté siempre visible */
+}
+
+.audio-btn i {
+    pointer-events: none;
+}
+
+.audio-btn:hover {
+    background-color: #ffffff;
+}
+
 /* Media queries según la documentación de MDN */
 
 /* Dispositivos pequeños (telefonía móvil) */
@@ -154,6 +181,14 @@ a {
     .container__imagen-persona {
         display: none;
     }
+
+    .audio-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        bottom: 15px;
+        right: 15px;
+    }
 }
 
 /* Dispositivos medianos (tabletas) */
@@ -172,6 +207,14 @@ a {
         width: 50%;
         height: auto;
         margin-top: 1rem;
+    }
+
+    .audio-btn {
+        width: 55px;
+        height: 55px;
+        font-size: 22px;
+        bottom: 18px;
+        right: 18px;
     }
 }
 
@@ -262,4 +305,11 @@ a {
         color: #1875E8;
     }
 
+    .audio-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        bottom: 20px;
+        right: 20px;
+    }
 }
