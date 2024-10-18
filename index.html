@@ -59,17 +59,6 @@
     <footer><a line="off" href="https://osmel-dev.vercel.app/">&copy; 2024 Osmel Dev</a></footer>
 
     <script src="app.js">
-        if ('serviceWorker' in navigator) {
-                window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('/service-worker.js')
-                        .then(registration => {
-                            console.log('Service Worker registrado con éxito:', registration);
-                        })
-                        .catch(error => {
-                            console.log('Error al registrar el Service Worker:', error);
-                        });
-                });
-            }
     </script>
 
 </body>
