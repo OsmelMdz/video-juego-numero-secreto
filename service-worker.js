@@ -16,14 +16,19 @@ const urlsToCache = [
     '/sound/dexter.mp3',
 ];
 
+// Evento de instalación
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
-            return cache.addAll(urlsToCache);
+            console.log('Cache abierta:', CACHE_NAME);
+            return cache.addAll(urlsToCache).catch(error => {
+                console.error('Error al añadir a la caché:', error);
+            });
         })
     );
 });
 
+// Evento de activación
 self.addEventListener('activate', (event) => {
     const cacheWhitelist = [CACHE_NAME];
     event.waitUntil(
@@ -31,6 +36,7 @@ self.addEventListener('activate', (event) => {
             return Promise.all(
                 cacheNames.map((cacheName) => {
                     if (!cacheWhitelist.includes(cacheName)) {
+                        console.log('Cache eliminada:', cacheName);
                         return caches.delete(cacheName);
                     }
                 })
@@ -39,10 +45,18 @@ self.addEventListener('activate', (event) => {
     );
 });
 
+// Evento de recuperación
 self.addEventListener('fetch', (event) => {
     event.respondWith(
         caches.match(event.request).then((response) => {
-            return response || fetch(event.request);
+            if (response) {
+                console.log('Sirviendo desde caché:', event.request.url);
+                return response;
+            }
+            console.log('Fetch a la red:', event.request.url);
+            return fetch(event.request).catch(error => {
+                console.error('Error al recuperar el recurso:', error);
+            });
         })
     );
 });
