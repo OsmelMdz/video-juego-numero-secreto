@@ -5,20 +5,17 @@ const urlsToCache = [
     '/style.css',
     '/app.js',
     '/img/dexter.png',
-    '/img/icons/icon-16x16.png',
     '/img/icons/icon-48x48.png',
     '/img/icons/icon-72x72.png',
     '/img/icons/icon-96x96.png',
     '/img/icons/icon-128x128.png',
     '/img/icons/icon-144x144.png',
-    '/img/icons/icon-152x152.png',
     '/img/icons/icon-192x192.png',
     '/img/icons/icon-384x384.png',
     '/img/icons/icon-512x512.png',
     '/sound/dexter.mp3',
 ];
 
-// Durante la fase de instalación, cachea los recursos estáticos
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
@@ -27,7 +24,6 @@ self.addEventListener('install', (event) => {
     );
 });
 
-// Activa el service worker y elimina cachés antiguos si es necesario
 self.addEventListener('activate', (event) => {
     const cacheWhitelist = [CACHE_NAME];
     event.waitUntil(
@@ -43,7 +39,6 @@ self.addEventListener('activate', (event) => {
     );
 });
 
-// Intercepta las solicitudes de la red y sirve archivos desde la caché
 self.addEventListener('fetch', (event) => {
     event.respondWith(
         caches.match(event.request).then((response) => {

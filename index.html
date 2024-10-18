@@ -14,6 +14,9 @@
     <link rel="shortcut icon" href="img/game.png" type="image/x-icon">
     <link rel="manifest" href="/manifest.json">
     <link rel="apple-touch-icon" href="img/game.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Dextro">
 </head>
 
 <body>
@@ -55,7 +58,19 @@
 
     <footer><a line="off" href="https://osmel-dev.vercel.app/">&copy; 2024 Osmel Dev</a></footer>
 
-    <script src="app.js"></script>
+    <script src="app.js">
+        if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/service-worker.js')
+                        .then(registration => {
+                            console.log('Service Worker registrado con éxito:', registration);
+                        })
+                        .catch(error => {
+                            console.log('Error al registrar el Service Worker:', error);
+                        });
+                });
+            }
+    </script>
 
 </body>
 
