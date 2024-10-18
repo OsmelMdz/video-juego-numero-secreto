@@ -28,7 +28,7 @@ body::before {
 }
 
 .container {
-    width: 90%;
+    width: auto;
     max-width: 1200px;
     margin: auto;
     height: auto;
@@ -69,6 +69,10 @@ body::before {
     margin-top: 1.5rem;
 }
 
+.container__boton:hover {
+    background: #1354A5;
+}
+
 .container__boton:disabled {
     background: #898989;
 }
@@ -91,19 +95,19 @@ body::before {
 h1 {
     font-family: 'Chakra Petch', sans-serif;
     font-size: 36px;
-    padding-bottom: 1rem;
+    padding-bottom: .5rem;
 }
 
 h2 {
     font-family: 'Inter', sans-serif;
     font-size: 16px;
-    padding-bottom: 1rem;
+    padding-bottom: .5rem;
 }
 
 p,
 button {
     font-family: 'Inter', sans-serif;
-    padding-bottom: 1rem;
+    padding-bottom: .5rem;
 }
 
 .texto__parrafo {
@@ -112,7 +116,7 @@ button {
 }
 
 .container__imagen-persona {
-    width: 100%;
+    width: 50%;
     height: auto;
     margin-top: 1rem;
 }
@@ -233,7 +237,7 @@ a {
 
     .container__imagen-persona {
         width: auto;
-        max-width: 100%;
+        max-width: 50%;
         margin-top: 0;
     }
 
@@ -245,7 +249,7 @@ a {
         border: none;
         color: #1875E8;
         padding: 2rem;
-        font-size: 24px;
+        font-size: 20px;
         font-weight: 700;
         font-family: 'Inter', sans-serif;
     }
@@ -257,18 +261,18 @@ a {
 
     .container__botones {
         display: flex;
-        gap: 2em;
+        gap: .5em;
     }
 
     h1 {
         font-family: 'Chakra Petch', sans-serif;
-        font-size: 50px;
-        padding-bottom: 3rem;
+        font-size: 20px;
+        padding-bottom: .5rem;
     }
 
     h2 {
         font-family: 'Chakra Petch', sans-serif;
-        font-size: 36px;
+        font-size: 20px;
         padding-bottom: 1rem;
     }
 
@@ -278,7 +282,7 @@ a {
     }
 
     .texto__parrafo {
-        font-size: 25px;
+        font-size: 20px;
         font-weight: 400;
     }
 
@@ -287,8 +291,8 @@ a {
         background: #1875E8;
         padding: 16px 24px;
         width: 100%;
-        font-size: 24px;
-        font-weight: 700;
+        font-size: 20px;
+        font-weight: 200;
         border: none;
         margin-top: 2rem;
     }

@@ -2,6 +2,10 @@
     "name": "Dextro",
     "short_name": "Dextro",
     "description": "Adivina el número secreto y diviértete con este emocionante juego de Dexter.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#007bff",
     "icons": [
         {
             "src": "/img/icons/icon-48x48.png",
@@ -53,13 +57,5 @@
             "sizes": "512x512",
             "type": "image/png"
         }
-    ],
-    "start_url": "/index.html",
-    "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#007bff",
-    "orientation": "portrait-primary",
-    "scope": "/",
-    "related_applications": [],
-    "prefer_related_applications": false
+    ]
 }
