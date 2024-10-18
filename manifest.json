@@ -2,7 +2,7 @@
     "name": "Dextro",
     "short_name": "Dextro",
     "description": "Adivina el número secreto y diviértete con este emocionante juego de Dexter.",
-    "start_url": "/",
+    "start_url": "/index.html",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#007bff",
