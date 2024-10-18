@@ -12,9 +12,9 @@
     <title>Dextro</title>
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="img/game.png" type="image/x-icon">
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="./manifest.json">
     <link rel="apple-touch-icon" href="img/game.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Dextro">
 </head>
@@ -62,7 +62,7 @@
     </script>
 
     <script>
-        if ('serviceWorker' in navigator) {
+       if ('serviceWorker' in navigator) {
             window.addEventListener('load', function () {
                 navigator.serviceWorker.register('./service-worker.js').then(function (registration) {
                     console.log('ServiceWorker registrado con éxito:', registration.scope);
